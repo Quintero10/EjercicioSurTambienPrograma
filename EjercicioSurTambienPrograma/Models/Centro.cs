@@ -106,6 +106,7 @@ namespace EjercicioSurTambienPrograma.Models
 
         private bool buscarVendedor(Salesman unVendedor)
         {
+
             bool existe =false;
             int i = 0;
             while (i < this.vendedores.Count && !existe)

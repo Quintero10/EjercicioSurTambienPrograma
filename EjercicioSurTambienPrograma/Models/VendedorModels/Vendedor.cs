@@ -6,44 +6,59 @@ namespace EjercicioSurTambienPrograma.Models
 {
     public abstract class Salesman
     {
+
+
         public List<Certificacion> certificaciones;
         public string id { get; set; }
         public abstract Boolean soyInfluyente();
         public abstract Boolean puedoTrabajarEnLaCiudad(Ciudad unaCiudad);
+
+        public Salesman(string unId) 
+        {
+            this.certificaciones = new List<Certificacion>();
+            this.id = unId;
+        }
 
         internal bool esMiId(string id)
         {
             return this.id == id;
         }
 
-        internal bool soyVersatil() 
+        public bool soyVersatil() 
         {
-            return certificaciones.Count > 3 && condicionVersatilidadProducto();
+            return certificaciones.Count >= 3 && condicionVersatilidadProducto();
         }
 
         private bool condicionVersatilidadProducto()
         {
-            int i = 0;
-            bool tengoCertiProducto = false;
-            bool tengoCertiNoProducto = false;
-            bool tengoVersatilidad = false;
-            while((i<this.certificaciones.Count && !(tengoCertiProducto && tengoCertiNoProducto)))
-            {
-                if (this.certificaciones[i].esSobreproducto) 
+            try {
+                int i = 0;
+                bool tengoCertiProducto = false;
+                bool tengoCertiNoProducto = false;
+                bool tengoVersatilidad = false;
+                while ((i < this.certificaciones.Count && !(tengoCertiProducto && tengoCertiNoProducto)))
                 {
-                    tengoCertiProducto = true;
+                    if (this.certificaciones[i].esSobreproducto)
+                    {
+                        tengoCertiProducto = true;
+                    }
+                    else
+                    {
+                        tengoCertiNoProducto = true;
+                    }
+                    i++;
                 }
-                else 
-                {
-                    tengoCertiNoProducto = true;
-                }
-                i++;
+                if (tengoCertiNoProducto && tengoCertiNoProducto) tengoVersatilidad = true;
+                return tengoVersatilidad;
             }
-            if (tengoCertiNoProducto && tengoCertiNoProducto) tengoVersatilidad = true;
-            return tengoVersatilidad;
+            catch(Exception e)
+            { 
+                throw new Exception("Excepción en condiciónVersatilidad"); 
+            }
+           
         }
 
-        internal int dameTotalPuntajeCertificaciones()
+        public int dameTotalPuntajeCertificaciones()
         {
             int acumulador = 0;
             foreach(var certificacion in this.certificaciones) 

@@ -6,6 +6,12 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
 {
     public class VendedorFijo : Salesman
     {
+
+        public VendedorFijo(string unId): base(unId) 
+        {
+            this.id = unId;
+            
+        }
         private Ciudad ciudadEnQueVive { get; set; }
 
         public override bool puedoTrabajarEnLaCiudad(Ciudad unaCiudad)

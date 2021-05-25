@@ -8,6 +8,11 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
     {
         private List<Provincia> provinciasHabilitado;
 
+        public Viajante(string unId) : base(unId)
+        {
+            this.id = unId;
+        }
+
         public override bool puedoTrabajarEnLaCiudad(Ciudad unaCiudad)
         {
             bool puedo = false;

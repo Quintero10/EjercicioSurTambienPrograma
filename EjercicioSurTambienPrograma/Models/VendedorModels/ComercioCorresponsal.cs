@@ -6,8 +6,15 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
 {
     public class ComercioCorresponsal : Salesman
     {
+
         private List<Ciudad> ciudadesConSucursal;
         private readonly int NRO_CIUDADES_INFLUYENTE = 5;
+
+        public ComercioCorresponsal(string unId) : base(unId) 
+        {
+            this.ciudadesConSucursal = new List<Ciudad>();
+            this.id = unId;
+        }
         public override bool soyInfluyente()
         {
             return (tengoCincoCiudades() || tengoTresProvincias());

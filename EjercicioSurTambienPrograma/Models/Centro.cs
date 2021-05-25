@@ -9,6 +9,10 @@ namespace EjercicioSurTambienPrograma.Models
         private Ciudad ciudad;
         private List<Salesman> vendedores;
 
+        public Centro() 
+        {
+            this.vendedores = new List<Salesman>();
+        }
         public Centro(Ciudad unaCiudad) 
         {
             this.ciudad = unaCiudad;

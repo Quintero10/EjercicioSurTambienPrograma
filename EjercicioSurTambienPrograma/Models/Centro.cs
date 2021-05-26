@@ -131,11 +131,12 @@ namespace EjercicioSurTambienPrograma.Models
             bool soyFirme = false;
             int contador = 0;
             int i = 0;
-            while(i<this.vendedores.Count && contador < 3) 
+            while(i<this.vendedores.Count && contador <= 3) 
             {
                 if (this.vendedores[i].soyFirme()) contador++;
                 i++;
             }
+            if (contador >= 3) soyFirme = true;
 
             return soyFirme;
         }

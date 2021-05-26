@@ -12,11 +12,11 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
             this.id = unId;
             
         }
-        private Ciudad ciudadEnQueVive { get; set; }
+        public Ciudad ciudadEnQueVive { get; set; }
 
         public override bool puedoTrabajarEnLaCiudad(Ciudad unaCiudad)
         {
-            return this.ciudadEnQueVive == unaCiudad;
+            return this.ciudadEnQueVive.nombreCiudad == unaCiudad.nombreCiudad;
         }
 
         public override bool soyInfluyente()

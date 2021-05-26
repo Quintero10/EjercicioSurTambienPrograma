@@ -6,11 +6,12 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
 {
     public class Viajante : Salesman
     {
-        private List<Provincia> provinciasHabilitado;
+        public List<Provincia> provinciasHabilitado;
 
         public Viajante(string unId) : base(unId)
         {
             this.id = unId;
+            this.provinciasHabilitado = new List<Provincia>();
         }
 
         public override bool puedoTrabajarEnLaCiudad(Ciudad unaCiudad)

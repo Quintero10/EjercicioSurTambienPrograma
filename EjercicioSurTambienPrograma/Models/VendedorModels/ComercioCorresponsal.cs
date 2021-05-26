@@ -7,7 +7,7 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
     public class ComercioCorresponsal : Salesman
     {
 
-        private List<Ciudad> ciudadesConSucursal;
+        public List<Ciudad> ciudadesConSucursal {  get; }
         private readonly int NRO_CIUDADES_INFLUYENTE = 5;
 
         public ComercioCorresponsal(string unId) : base(unId) 
@@ -23,18 +23,25 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
         private bool tengoTresProvincias()
         {
             bool tengoAlMenosTresProvincias = false;
-            int contadorProvincias = 0;
             int i = 0;
-            while(contadorProvincias <3 && i < this.ciudadesConSucursal.Count) 
+            List<Provincia> provincias = new List<Provincia>();
+            provincias.Add(this.ciudadesConSucursal[i].provincia);
+            int contadorProvincias = 1;
+            while (contadorProvincias <=3 && i < this.ciudadesConSucursal.Count) 
             {
-                List<Provincia> provincias = new List<Provincia>();
+                
                 Provincia provincia=this.ciudadesConSucursal[i].provincia;
                 if(noSeEncuentraEnLaLista(provincias,provincia))
                 {
                     provincias.Add(provincia);
-                    contadorProvincias=provincias.Count;
+                    contadorProvincias++;
                 }
                 i++;
+            }
+
+            if (contadorProvincias == 3) 
+            {
+                tengoAlMenosTresProvincias = true;
             }
 
             return tengoAlMenosTresProvincias;
@@ -50,6 +57,7 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
                 {
                     esta = true;
                 }
+                i++;
             }
 
             return esta;
@@ -68,10 +76,12 @@ namespace EjercicioSurTambienPrograma.Models.Vendedor
             int i = 0;
             while(i<this.ciudadesConSucursal.Count && !puedo) 
             {
-                if (this.ciudadesConSucursal[i].Equals(unaCiudad)) 
+                if (this.ciudadesConSucursal[i].nombreCiudad.Equals(unaCiudad.nombreCiudad)) 
                 {
                     puedo = true;
                 }
+
+                i++;
             }
 
             return puedo;
